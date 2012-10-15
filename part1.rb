@@ -4,13 +4,20 @@
 
 
 def palindrome?(str)
-  # YOUR CODE HERE
+  str.downcase.gsub(/\W/,'').reverse == str.downcase.gsub(/\W/,'')
 end
 
 def count_words(str)
-  # YOUR CODE HERE
+  word_counts = Hash.new
+  str.downcase.scan(/\b[a-z]+/).each do |word|
+    if word_counts[word].nil? then
+      word_counts[word] = 1
+    else
+      word_counts[word] += 1
+    end
+  end
+  word_counts
 end
-
 
 #the code below this line will test your functions.  You should remove everything below this line prior to submitting your file
 
@@ -23,15 +30,12 @@ else
   puts test_str + " is NOT a palindrome!"
 end
 
-
 test_str = "Madam, I'm Adam"
-
 if palindrome? test_str
-  puts test_str " is a palindrome!"
+  puts test_str + " is a palindrome!"
 else
-  puts test_str " is NOT a palindrome!"
+  pura test_str + " is NOT a palindrome"
 end
-
 
 test_str = "The rent is due on the first day of the month unless the first day of the month falls on a Saturday or Sunday"
 
